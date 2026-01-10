@@ -1,0 +1,22 @@
+;; This config is used for E2E testing
+{:source-paths ["src"]
+ :dependencies []
+ :builds
+ {:browser
+  {:target :esm
+   :js-options {:js-provider :import}
+   :compiler-options {:optimizations :advanced
+                      :source-map true
+                      :output-feature-set :es-next}
+   :output-dir ".shadow-cljs-out/browser"
+   :modules {:main {:init-fn my.app/browser-init}}}
+  :worker
+  {:target :esm
+   :runtime :custom
+   :js-options {:js-provider :import}
+   :compiler-options {:optimizations :advanced
+                      :source-map true
+                      :output-feature-set :es-next}
+   :output-dir ".shadow-cljs-out/worker"
+   :modules {:main {:entries [my.app]
+                    :exports {default my.app/worker-init}}}}}}

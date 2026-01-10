@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+.idea
+.vscode
+coverage
+*.local
+.wrangler
+.clj-kondo
+.lsp
+.shadow-cljs
+.shadow-cljs-out

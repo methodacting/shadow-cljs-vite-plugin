@@ -1,0 +1,54 @@
+{
+  "name": "shadow-cljs-vite-plugin",
+  "version": "0.0.1",
+  "description": "A robust Vite plugin for seamless integration with shadow-cljs.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/**",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "clojurescript",
+    "shadow-cljs",
+    "hot-module-replacement"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "shadow-cljs": "^2.0.0",
+    "vite": "^4.0.0 || ^5.0.0 || ^6.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.20.1",
+    "@types/node": "^25.0.5",
+    "jsdom": "^27.4.0",
+    "shadow-cljs": "^3.3.4",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.16"
+  },
+  "dependencies": {
+    "edn-data": "^1.1.2",
+    "picocolors": "^1.1.1"
+  }
+}

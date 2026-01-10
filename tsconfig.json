@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "moduleResolution": "bundler",
+    "sourceMap": true,
+    "outDir": "dist",
+    "noEmit": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "strict": true,
+    "removeComments": false
+  },
+  "include": ["src", "tests"]
+}
