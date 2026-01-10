@@ -48,6 +48,8 @@ Then, import the virtual module in your entry HTML or JavaScript file (e.g., `ma
 </script>
 ```
 
+**For a complete working example, you can refer to the [tests/e2e/fixtures/simple-project/](./tests/e2e/fixtures/simple-project/) directory.**
+
 ## Shadow-CLJS Configuration Requirements
 
 To ensure correct integration with Vite's ES module system and avoid runtime errors, your `shadow-cljs.edn` build configuration **MUST** use the following settings:
