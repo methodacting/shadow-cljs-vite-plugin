@@ -2,7 +2,14 @@
   "name": "shadow-cljs-vite-plugin",
   "version": "0.0.1",
   "description": "A robust Vite plugin for seamless integration with shadow-cljs.",
-  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolasblack/shadow-cljs-vite-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bolasblack/shadow-cljs-vite-plugin/issues"
+  },
+  "homepage": "https://github.com/bolasblack/shadow-cljs-vite-plugin#readme",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
