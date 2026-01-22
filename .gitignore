@@ -10,3 +10,4 @@ coverage
 .lsp
 .shadow-cljs
 .shadow-cljs-out
+.claude/settings.local.json
