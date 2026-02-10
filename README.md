@@ -1,5 +1,8 @@
 # shadow-cljs-vite-plugin
 
+> Note: This repository is a fork of the original `shadow-cljs-vite-plugin`.
+> Upstream: https://github.com/bolasblack/shadow-cljs-vite-plugin
+
 [![Tests](https://github.com/bolasblack/shadow-cljs-vite-plugin/actions/workflows/test.yml/badge.svg)](https://github.com/bolasblack/shadow-cljs-vite-plugin/actions/workflows/test.yml)
 
 A robust Vite plugin for seamless integration with [shadow-cljs](https://github.com/thheller/shadow-cljs).
