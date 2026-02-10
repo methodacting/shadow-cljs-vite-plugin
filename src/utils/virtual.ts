@@ -17,11 +17,13 @@ export function toResolvedVirtualId(buildId: string): ShadowCljsVirtualId {
   return `\0${VIRTUAL_MODULE_PREFIX}${buildId}` as any;
 }
 
-export function parseBuildIdFromVirtualId(id: ShadowCljsVirtualId): string;
-export function parseBuildIdFromVirtualId(id: string): string | null;
-export function parseBuildIdFromVirtualId(id: string): string | null {
+export function parseBuildIdFromVirtualId(id: string): { buildId: string; moduleName?: string } | null {
   if (id.startsWith(`\0${VIRTUAL_MODULE_PREFIX}`)) {
-    return id.slice(`\0${VIRTUAL_MODULE_PREFIX}`.length);
+    const parts = id.slice(`\0${VIRTUAL_MODULE_PREFIX}`.length).split("/");
+    return {
+      buildId: parts[0],
+      moduleName: parts[1],
+    };
   }
   return null;
 }

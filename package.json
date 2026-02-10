@@ -1,15 +1,16 @@
 {
-  "name": "shadow-cljs-vite-plugin",
-  "version": "0.0.6",
+  "name": "@methodacting/shadow-cljs-vite-plugin",
+  "version": "0.0.1",
   "description": "A robust Vite plugin for seamless integration with shadow-cljs.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bolasblack/shadow-cljs-vite-plugin.git"
+    "url": "git+https://github.com/methodacting/clj-astro.git",
+    "directory": "packages/shadow-cljs-vite-plugin"
   },
   "bugs": {
-    "url": "https://github.com/bolasblack/shadow-cljs-vite-plugin/issues"
+    "url": "https://github.com/methodacting/clj-astro/issues"
   },
-  "homepage": "https://github.com/bolasblack/shadow-cljs-vite-plugin#readme",
+  "homepage": "https://github.com/methodacting/clj-astro/tree/main/packages/shadow-cljs-vite-plugin#readme",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -23,6 +24,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
@@ -40,22 +44,25 @@
   ],
   "author": "",
   "license": "MIT",
+  "sideEffects": false,
   "peerDependencies": {
     "shadow-cljs": "^3.3.5",
     "vite": "^4.0.0 || ^5.0.0 || ^6.0.0"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.20.1",
+    "@types/glob": "^9.0.0",
     "@types/node": "^25.0.5",
     "jsdom": "^27.4.0",
     "shadow-cljs": "^3.3.5",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
+    "vite": "^6.2.0",
     "vitest": "^4.0.16"
   },
   "dependencies": {
     "edn-data": "^1.1.2",
+    "glob": "^13.0.1",
     "picocolors": "^1.1.1"
   }
 }

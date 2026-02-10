@@ -29,8 +29,9 @@ export function createVirtualModulePlugin(
     },
 
     async load(id) {
-      const buildId = parseBuildIdFromVirtualId(id);
-      if (!buildId) return;
+      const parsed = parseBuildIdFromVirtualId(id);
+      if (!parsed) return;
+      const { buildId, moduleName } = parsed;
 
       const ctx = getContext();
       if (!ctx.buildConfigs) {
@@ -42,7 +43,7 @@ export function createVirtualModulePlugin(
         throw new Error(`Build '${buildId}' not found in shadow-cljs config`);
       }
 
-      const filePath = getEntryPath(ctx.projectRoot, buildConfig);
+      const filePath = getEntryPath(ctx.projectRoot, buildConfig, moduleName);
 
       while (!(await existsAsync(filePath))) {
         if (!getGlobalState()) {

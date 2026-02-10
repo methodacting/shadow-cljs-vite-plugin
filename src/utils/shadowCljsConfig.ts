@@ -32,7 +32,7 @@ const getFieldOfMap = <T>(
 export async function loadBuildConfigs(
   configPath: string,
   buildIds: string[]
-): Promise<BuildConfigMap> {
+): Promise<{ configs: BuildConfigMap; sourcePaths: string[] }> {
   const content = await fs.readFile(configPath, "utf-8");
   return parseBuildConfigs(content, configPath, buildIds);
 }
@@ -41,13 +41,15 @@ function parseBuildConfigs(
   content: string,
   configPath: string,
   buildIds: string[]
-): BuildConfigMap {
+): { configs: BuildConfigMap; sourcePaths: string[] } {
   const parsed = parseEDNString(content, {
     keywordAs: "object",
     setAs: "array",
     mapAs: "doubleArray",
   });
   const config = ednToJs(parsed) as [string, unknown][];
+
+  const sourcePaths = getFieldOfMap<string[]>(config, "source-paths") ?? ["src"];
 
   const builds = getFieldOfMap<
     [buildId: string, buildConfig: [string, unknown]][]
@@ -82,6 +84,10 @@ function parseBuildConfigs(
       throw new Error(`No :modules found for build "${buildId}"`);
     }
 
+    // Extract init-fn from the first module
+    const mainModuleConfig = modulesConfig[0][1] as [string, unknown][];
+    const initFn = getFieldOfMap<string>(mainModuleConfig, "init-fn");
+
     const _runtime = getFieldOfMap<string>(build, "runtime");
     const runtime =
       typeof _runtime === "string"
@@ -94,10 +100,11 @@ function parseBuildConfigs(
       outputDir,
       modules: modulesConfig.map((pair) => pair[0]),
       runtime,
+      initFn,
     });
   }
 
-  return result;
+  return { configs: result, sourcePaths };
 }
 
 export function resolveConfigPath(projectRoot: string, configPath?: string) {
@@ -110,11 +117,13 @@ export function isBrowserTarget(buildConfig: BuildConfig): boolean {
 
 export function getEntryPath(
   projectRoot: string,
-  buildConfig: BuildConfig
+  buildConfig: BuildConfig,
+  moduleName?: string
 ): string {
+  const actualModule = moduleName ?? buildConfig.modules[0];
   return resolve(
     projectRoot,
     buildConfig.outputDir,
-    `${buildConfig.modules[0]}.js`
+    `${actualModule}.js`
   );
 }
